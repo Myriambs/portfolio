@@ -1,0 +1,452 @@
+/* Skills Orbital Animation System */
+.skills {
+  padding: 8rem 0;
+  background: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #16213e 50%, #0f172a 100%);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.skills .section-title {
+  color: white;
+  -webkit-text-fill-color: white;
+}
+
+.skills-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.orbital-system {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  margin: 2rem auto;
+  perspective: 1000px;
+}
+
+.center-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+}
+
+.skills-text {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffd700, #ff6b6b, #4ecdc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+.pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.orbital-skill {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140px;
+  height: 140px;
+  margin-left: -70px;
+  margin-top: -70px;
+  cursor: pointer;
+  transform-origin: 50% 50%;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+}
+
+.orbital-skill.selected {
+  z-index: 20;
+  transform: scale(1.3) !important;
+  animation-play-state: paused !important;
+}
+
+.skill-content {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.skill-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.orbital-skill:hover .skill-content::before {
+  left: 100%;
+}
+
+.skill-logo {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.skill-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.skill-name {
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: white;
+  display: block;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.skill-level {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.25rem;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.skill-level-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--skill-color), rgba(255, 255, 255, 0.8));
+  border-radius: 3px;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px var(--skill-color);
+}
+
+.skill-percentage {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Orbital Animations */
+.orbital-skill.skill-1 {
+  animation: orbit1 15s linear infinite;
+}
+
+.orbital-skill.skill-2 {
+  animation: orbit2 18s linear infinite;
+}
+
+.orbital-skill.skill-3 {
+  animation: orbit3 20s linear infinite;
+}
+
+.orbital-skill.skill-4 {
+  animation: orbit4 22s linear infinite;
+}
+
+.orbital-skill.skill-5 {
+  animation: orbit5 16s linear infinite;
+}
+
+.orbital-skill.skill-6 {
+  animation: orbit6 19s linear infinite;
+}
+
+.orbital-skill.skill-7 {
+  animation: orbit7 21s linear infinite;
+}
+
+.orbital-skill.skill-8 {
+  animation: orbit8 17s linear infinite;
+}
+
+.orbital-skill.skill-9 {
+  animation: orbit9 23s linear infinite;
+}
+
+.orbital-skill.skill-10 {
+  animation: orbit10 14s linear infinite;
+}
+
+.orbital-system.paused .orbital-skill:not(.selected) {
+  animation-play-state: paused;
+  opacity: 0.5;
+}
+
+.orbital-skill:hover .skill-content {
+  transform: scale(1.1);
+  border-color: var(--skill-color);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 20px var(--skill-color);
+}
+
+/* Orbital Keyframes */
+@keyframes orbit1 {
+  from {
+    transform: rotate(0deg) translateX(250px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(250px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit2 {
+  from {
+    transform: rotate(36deg) translateX(220px) rotate(-36deg);
+  }
+  to {
+    transform: rotate(396deg) translateX(220px) rotate(-396deg);
+  }
+}
+
+@keyframes orbit3 {
+  from {
+    transform: rotate(72deg) translateX(280px) rotate(-72deg);
+  }
+  to {
+    transform: rotate(432deg) translateX(280px) rotate(-432deg);
+  }
+}
+
+@keyframes orbit4 {
+  from {
+    transform: rotate(108deg) translateX(200px) rotate(-108deg);
+  }
+  to {
+    transform: rotate(468deg) translateX(200px) rotate(-468deg);
+  }
+}
+
+@keyframes orbit5 {
+  from {
+    transform: rotate(144deg) translateX(260px) rotate(-144deg);
+  }
+  to {
+    transform: rotate(504deg) translateX(260px) rotate(-504deg);
+  }
+}
+
+@keyframes orbit6 {
+  from {
+    transform: rotate(180deg) translateX(230px) rotate(-180deg);
+  }
+  to {
+    transform: rotate(540deg) translateX(230px) rotate(-540deg);
+  }
+}
+
+@keyframes orbit7 {
+  from {
+    transform: rotate(216deg) translateX(270px) rotate(-216deg);
+  }
+  to {
+    transform: rotate(576deg) translateX(270px) rotate(-576deg);
+  }
+}
+
+@keyframes orbit8 {
+  from {
+    transform: rotate(252deg) translateX(210px) rotate(-252deg);
+  }
+  to {
+    transform: rotate(612deg) translateX(210px) rotate(-612deg);
+  }
+}
+
+@keyframes orbit9 {
+  from {
+    transform: rotate(288deg) translateX(290px) rotate(-288deg);
+  }
+  to {
+    transform: rotate(648deg) translateX(290px) rotate(-648deg);
+  }
+}
+
+@keyframes orbit10 {
+  from {
+    transform: rotate(324deg) translateX(240px) rotate(-324deg);
+  }
+  to {
+    transform: rotate(684deg) translateX(240px) rotate(-684deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.4;
+  }
+}
+
+.skill-details {
+  position: absolute;
+  bottom: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+  backdrop-filter: blur(10px);
+  padding: 1.5rem 2rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: slideUpFade 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.skill-details-logo {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.skill-details-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Mobile Responsive for Skills */
+@media (max-width: 768px) {
+  .orbital-system {
+    width: 400px;
+    height: 400px;
+  }
+  
+  .skills-text {
+    font-size: 2rem;
+  }
+  
+  .orbital-skill {
+    width: 100px;
+    height: 100px;
+    margin-left: -50px;
+    margin-top: -50px;
+  }
+  
+  .skill-content {
+    padding: 0.75rem;
+  }
+  
+  .skill-logo {
+    width: 30px;
+    height: 30px;
+    padding: 6px;
+  }
+  
+  .skill-name {
+    font-size: 0.65rem;
+  }
+  
+  @keyframes orbit1 {
+    from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+  }
+  
+  @keyframes orbit2 {
+    from { transform: rotate(36deg) translateX(130px) rotate(-36deg); }
+    to { transform: rotate(396deg) translateX(130px) rotate(-396deg); }
+  }
+  
+  @keyframes orbit3 {
+    from { transform: rotate(72deg) translateX(170px) rotate(-72deg); }
+    to { transform: rotate(432deg) translateX(170px) rotate(-432deg); }
+  }
+  
+  @keyframes orbit4 {
+    from { transform: rotate(108deg) translateX(120px) rotate(-108deg); }
+    to { transform: rotate(468deg) translateX(120px) rotate(-468deg); }
+  }
+  
+  @keyframes orbit5 {
+    from { transform: rotate(144deg) translateX(160px) rotate(-144deg); }
+    to { transform: rotate(504deg) translateX(160px) rotate(-504deg); }
+  }
+  
+  @keyframes orbit6 {
+    from { transform: rotate(180deg) translateX(140px) rotate(-180deg); }
+    to { transform: rotate(540deg) translateX(140px) rotate(-540deg); }
+  }
+  
+  @keyframes orbit7 {
+    from { transform: rotate(216deg) translateX(180px) rotate(-216deg); }
+    to { transform: rotate(576deg) translateX(180px) rotate(-576deg); }
+  }
+  
+  @keyframes orbit8 {
+    from { transform: rotate(252deg) translateX(125px) rotate(-252deg); }
+    to { transform: rotate(612deg) translateX(125px) rotate(-612deg); }
+  }
+  
+  @keyframes orbit9 {
+    from { transform: rotate(288deg) translateX(175px) rotate(-288deg); }
+    to { transform: rotate(648deg) translateX(175px) rotate(-648deg); }
+  }
+  
+  @keyframes orbit10 {
+    from { transform: rotate(324deg) translateX(145px) rotate(-324deg); }
+    to { transform: rotate(684deg) translateX(145px) rotate(-684deg); }
+  }
+}
